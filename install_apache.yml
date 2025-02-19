@@ -1,8 +1,11 @@
 ---
-
-- hosts: all
+- name: Install Apache on mi_servidor
+  hosts: all
   become: true
+  gather_facts: true
   tasks:
-  - name: install apache2 package
-    apt:
-      name: apache2
+    - name: Install Apache2 Package
+      ansible.builtin.apt:
+        name: apache2
+        #state: present
+      when: ansible_distribution == "Fedora"
