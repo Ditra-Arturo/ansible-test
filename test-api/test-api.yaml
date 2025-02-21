@@ -1,0 +1,50 @@
+---
+- name: Make GET request to an API
+  hosts: localhost
+  vars_files:
+    - "{{ root_project }}/vaults/apikey_file"
+  vars:
+    root_project: '..'
+  tasks:
+    - name: Handle request
+      block:
+        - name: Make a GET request to an API
+          ansible.builtin.uri:
+            url: "http://www.omdbapi.com/?apikey={{ api_key }}&t={{ item }}"
+            method: GET
+            return_content: true
+          register: api_response
+          loop:
+            - "Harry+Potter"
+            - "The+Matrix"
+            - "The+Matrix+Reloaded"
+            - "The+Matrix+Revolutions"
+          failed_when: api_response.status != 200
+
+        - name: Extract titles from the API response
+          ansible.builtin.set_fact:
+            movie_titles: "{{ movie_titles | default([]) + [item.json.Title] }}"
+            all_content: "{{ all_content | default([]) + [dict(item.json, Ratings=omit)] }}"
+          loop: "{{ api_response.results }}"
+
+        - name: Save the response to a formated excel file
+          ditra.cisco.one_sheet_excel:
+            data: "{{ all_content }}"
+            file: "movies.xlsx"
+            create: true
+            path: "{{ playbook_dir }}"
+            operation: write
+
+
+        # - name: Save the response to a formated excel file
+        #  cdelgehier.excel.excel:
+        #    data: "{{ all_content }}"
+        #    file: "movies.xlsx"
+        #    worksheet: "Movies"
+        #    path: "{{ playbook_dir }}"
+        #    create: true
+      
+      rescue:
+        - name: Handle errors
+          ansible.builtin.fail:
+            msg: "The API request failed "

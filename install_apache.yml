@@ -1,11 +1,26 @@
 ---
 - name: Install Apache on mi_servidor
-  hosts: all
+  hosts: windows
   become: true
   gather_facts: true
   tasks:
     - name: Install Apache2 Package
+      tags: apache,apache2,ubuntu 
       ansible.builtin.apt:
         name: apache2
-        #state: present
-      when: ansible_distribution == "Fedora"
+        state: present
+      when: ansible_distribution == "{{distro}}"
+    - name: Update cache
+      tags: cache
+      ansible.builtin.apt:
+        update_cache: no
+      when: ansible_distribution == "Ubuntu"
+    - name: copy default file
+      tags: files,ubuntu
+      ansible.builtin.copy:
+        src: test.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+        

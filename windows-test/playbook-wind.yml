@@ -1,0 +1,14 @@
+---
+- name: Check for updates
+  hosts: windows
+  tasks:
+  - name: Check for updates
+    ansible.windows.win_updates:
+      category_names:
+        - Updates
+      state: searched
+    register: update_result
+
+  - name: Print updates
+    debug:
+      var: update_result

@@ -1,0 +1,30 @@
+ok: [mi_windows] => {
+    "update_result": {
+        "changed": false,
+        "failed": false,
+        "failed_update_count": 0,
+        "filtered_updates": {
+            "fcd13e26-ca18-447b-8130-dc4dbb781733": {
+                "categories": [
+                    "Security Updates"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "fcd13e26-ca18-447b-8130-dc4dbb781733",
+                "installed": false,
+                "kb": [
+                    "5052000"
+                ],
+                "title": "2025-02 Cumulative Update for Windows Server 2019 (1809) for x64-based Systems (KB5052000)"
+            }
+        },
+        "found_update_count": 0,
+        "installed_update_count": 0,
+        "reboot_required": true,
+        "rebooted": false,
+        "updates": {}
+    }
+}

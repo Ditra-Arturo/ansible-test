@@ -1,0 +1,110 @@
+ok: [mi_windows] => {
+    "update_result": {
+        "changed": false,
+        "failed": false,
+        "failed_update_count": 0,
+        "filtered_updates": {
+            "193134c5-466d-4762-8633-762e6c70bf6f": {
+                "categories": [
+                    "Update Rollups",
+                    "Windows Server 2016",
+                    "Windows Server 2019"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "193134c5-466d-4762-8633-762e6c70bf6f",
+                "installed": false,
+                "kb": [
+                    "890830"
+                ],
+                "title": "Windows Malicious Software Removal Tool x64 - v5.132 (KB890830)"
+            },
+            "7a31ed63-6ecb-4c37-baab-0376417b3af1": {
+                "categories": [
+                    "Drivers"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "7a31ed63-6ecb-4c37-baab-0376417b3af1",
+                "installed": false,
+                "kb": [],
+                "title": "Broadcom Inc. - System - 9.8.18.1"
+            },
+            "82546a15-ebe0-4883-b4f5-b24a122fba5b": {
+                "categories": [
+                    "Definition Updates",
+                    "Microsoft Defender Antivirus"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "82546a15-ebe0-4883-b4f5-b24a122fba5b",
+                "installed": false,
+                "kb": [
+                    "2267602"
+                ],
+                "title": "Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.421.1992.0) - Current Channel (Broad)"
+            },
+            "bd0d4b6b-286c-49b9-b0bf-7d1b106416a4": {
+                "categories": [
+                    "Security Updates",
+                    "Windows Server 2019"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "bd0d4b6b-286c-49b9-b0bf-7d1b106416a4",
+                "installed": false,
+                "kb": [
+                    "5050182"
+                ],
+                "title": "2025-01 Cumulative Update for .NET Framework 3.5, 4.7.2 and 4.8 for Windows Server 2019 for x64 (KB5050182)"
+            },
+            "fcd13e26-ca18-447b-8130-dc4dbb781733": {
+                "categories": [
+                    "Security Updates"
+                ],
+                "downloaded": false,
+                "filtered_reason": "category_names",
+                "filtered_reasons": [
+                    "category_names"
+                ],
+                "id": "fcd13e26-ca18-447b-8130-dc4dbb781733",
+                "installed": false,
+                "kb": [
+                    "5052000"
+                ],
+                "title": "2025-02 Cumulative Update for Windows Server 2019 (1809) for x64-based Systems (KB5052000)"
+            }
+        },
+        "found_update_count": 1,
+        "installed_update_count": 0,
+        "reboot_required": false,
+        "rebooted": false,
+        "updates": {
+            "89e11227-761b-4396-bf37-37a2b641fa84": {
+                "categories": [
+                    "Updates",
+                    "Windows Server 2019"
+                ],
+                "downloaded": false,
+                "id": "89e11227-761b-4396-bf37-37a2b641fa84",
+                "installed": false,
+                "kb": [
+                    "4589208"
+                ],
+                "title": "2021-01 Update for Windows Server 2019 for x64-based Systems (KB4589208)"
+            }
+        }
+    }
+}
