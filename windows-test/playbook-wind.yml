@@ -1,20 +1,33 @@
 ---
 - name: Check for updates
   hosts: all
+  gather_facts: false
   tasks:
     - name: Handle Request to Server
       block:
-        - name: Check for reachable host
-          ansible.builtin.ping: 
-          register: ping_result
-          failed_when: ping_result.failed
-
         - name: Check for updates
           ansible.windows.win_updates:
             category_names:
+              - CriticalUpdates
+              - SecurityUpdates
+              - DefinitionUpdates
+              - Drivers
+              - FeaturePacks
+              - ServicePacks
+              - UpdateRollups
               - Updates
             state: searched
           register: update_result
+          ignore_unreachable: true
+          failed_when: update_result.unreachable | default(false)
+
+        - name: Save the number of updates
+          ansible.builtin.set_fact:
+            update_count: "{{ update_result.found_update_count }}"
+
+        - name: Agregar resultados a una variable global
+          ansible.builtin.set_fact:
+            update_results: "{{ update_results | default({}) | combine({inventory_hostname: update_count}) }}"
 
         - name: Print updates
           ansible.builtin.debug:
@@ -23,3 +36,8 @@
         - name: Handle errors
           ansible.builtin.fail:
             msg: "The update check failed"
+      always:
+        - name: Mostrar cantidad de actualizaciones por host y determinar cuál tiene más
+          ansible.builtin.debug:
+            var: update_results
+          when: update_results is defined
