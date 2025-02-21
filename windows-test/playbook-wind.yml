@@ -1,14 +1,25 @@
 ---
 - name: Check for updates
-  hosts: windows
+  hosts: all
   tasks:
-  - name: Check for updates
-    ansible.windows.win_updates:
-      category_names:
-        - Updates
-      state: searched
-    register: update_result
+    - name: Handle Request to Server
+      block:
+        - name: Check for reachable host
+          ansible.builtin.ping: 
+          register: ping_result
+          failed_when: ping_result.failed
 
-  - name: Print updates
-    debug:
-      var: update_result
+        - name: Check for updates
+          ansible.windows.win_updates:
+            category_names:
+              - Updates
+            state: searched
+          register: update_result
+
+        - name: Print updates
+          ansible.builtin.debug:
+            var: update_result
+      rescue:
+        - name: Handle errors
+          ansible.builtin.fail:
+            msg: "The update check failed"
